@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AboutsController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContactsController;
 use App\Http\Controllers\Admin\GuidesController;
+use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
@@ -48,4 +49,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('guides', GuidesController::class)->except(['show']);
     Route::resource('service', ServicesController::class)->except(['show']);
     Route::resource('contact', ContactsController::class)->except(['show']);
+    Route::resource('reservation', ReservationController::class)->except(['show']);
 });

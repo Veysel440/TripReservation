@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ürün Düzenle</title>
+    <title>Rezervasyon Düzenle</title>
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/admin-settings.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/admin-menu.css') }}">
@@ -22,37 +22,37 @@
 
     <main class="main-content">
         <header class="header">
-            <h1>Ürün Düzenle</h1>
+            <h1>Rezervasyon Düzenle</h1>
         </header>
 
-
         <section class="settings">
-            <form action="{{ route('admin.product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.reservation.update', $reservation->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
-                    <label for="name">Ürün Adı:</label>
-                    <input type="text" name="name" class="form-control" value="{{ $product->name }}" required>
+                    <label for="name">Ad Soyad:</label>
+                    <input type="text" name="name" class="form-control" value="{{ $reservation->name }}" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="price">Fiyat:</label>
-                    <input type="text" name="price" class="form-control" value="{{ $product->price }}" required>
+                    <label for="email">E-posta:</label>
+                    <input type="email" name="email" class="form-control" value="{{ $reservation->email }}" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="product_details">Detaylar:</label>
-                    <textarea name="product_details" class="form-control" required>{{ $product->product_details }}</textarea>
+                    <label for="destination">Gidilecek Yer:</label>
+                    <input type="text" name="destination" class="form-control" value="{{ $reservation->destination }}" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="image">Ürün Fotoğrafı:</label>
-                    <input type="file" name="image" class="form-control">
-                    @if($product->image)
-                        <p>Mevcut Görsel:</p>
-                        <img src="{{ asset('storage/' . $product->image) }}" width="100">
-                    @endif
+                    <label for="date_time">Tarih ve Saat:</label>
+                    <input type="datetime-local" name="date_time" class="form-control" value="{{ \Carbon\Carbon::parse($reservation->date_time)->format('Y-m-d\TH:i') }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mesaj:</label>
+                    <textarea name="message" class="form-control" required>{{ $reservation->message }}</textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Güncelle</button>

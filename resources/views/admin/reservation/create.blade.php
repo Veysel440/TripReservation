@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeni Slider Ekle</title>
+    <title>Yeni Rezervasyon Ekle</title>
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/admin-settings.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/admin-menu.css') }}">
@@ -21,38 +21,45 @@
     <main class="main-content">
         <header class="header">
             <div class="header-title">
-                <h1>Yeni Slider Ekle</h1>
+                <h1>Yeni Rezervasyon Ekle</h1>
             </div>
             <div class="header-actions">
                 <span>Admin</span>
                 <li>
-                    <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="fas fa-sign-out-alt"></i> Çıkış Yap
-                    </a>
                 </li>
-                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
             </div>
         </header>
-
-        <div class="slider-create-container">
-            <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
+        <div class="product-create-container">
+            <form action="{{ route('admin.reservation.store') }}" method="POST">
                 @csrf
+
                 <div class="form-group">
-                    <label for="title">Başlık:</label>
-                    <input type="text" id="title" name="title" required>
+                    <label for="name">Ad Soyad:</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="image">Slider Fotoğrafı:</label>
-                    <input type="file" id="image" name="image" accept="image/*" required>
+                    <label for="email">E-posta:</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="description">Açıklama:</label>
-                    <textarea id="description" name="description" rows="4" required></textarea>
+                    <label for="destination">Gidilecek Yer:</label>
+                    <input type="text" id="destination" name="destination" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="date_time">Tarih ve Saat:</label>
+                    <input type="datetime-local" id="date_time" name="date_time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mesaj:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+
                 <div class="button-container">
-                    <a href="{{ route('admin.slider.index') }}" class="btn btn-secondary">Geri Dön</a>
+                    <a href="{{ route('admin.reservation.index') }}" class="btn btn-secondary">Geri Dön</a>
                     <button type="submit" class="btn btn-primary">Kaydet</button>
                 </div>
             </form>

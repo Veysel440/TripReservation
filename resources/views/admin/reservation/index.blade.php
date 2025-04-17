@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ürün Yönetimi</title>
+    <title>Rezervasyon Yönetimi</title>
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/admin-settings.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/admin-menu.css') }}">
@@ -21,11 +21,15 @@
     <main class="main-content">
         <header class="header">
             <div class="header-title">
-                <h1>Ürün Yönetimi</h1>
+                <h1>Rezervasyon Yönetimi</h1>
             </div>
             <div class="header-actions">
                 <span>Admin</span>
-                <li><a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a></li>
+                <li>
+                    <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                    </a>
+                </li>
                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
@@ -34,35 +38,37 @@
 
         <div class="product-settings-container">
             <div class="product-settings-actions">
-                <a href="{{ route('admin.product.create') }}" class="btn btn-primary">Yeni Ürün Ekle</a>
+                <a href="{{ route('admin.reservation.create') }}" class="btn btn-primary">Yeni Rezervasyon Ekle</a>
             </div>
-            <h3>Ürünler Listesi</h3>
+            <h3>Rezervasyon Listesi</h3>
             <div class="table-wrapper">
                 <table>
                     <thead>
                     <tr>
-                        <th>Ürün Adı</th>
-                        <th>Ürün Fotoğrafı</th>
-                        <th>Fiyat</th>
-                        <th>Detaylar</th>
+                        <th>İsim</th>
+                        <th>Email</th>
+                        <th>Hedef</th>
+                        <th>Tarih</th>
+                        <th>Mesaj</th>
                         <th>İşlemler</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($products as $product)
+                    @foreach($reservations as $reservation)
                         <tr>
-                            <td>{{ $product->name }}</td>
-                            <td><img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" width="100"></td>
-                            <td>{{ $product->price }} ₺</td>
-                            <td>{{ Str::limit($product->product_details, 30) }}</td>
+                            <td>{{ $reservation->name }}</td>
+                            <td>{{ $reservation->email }}</td>
+                            <td>{{ $reservation->destination }}</td>
+                            <td>{{ $reservation->date_time->format('d.m.Y H:i') }}</td>
+                            <td>{{ Str::limit($reservation->special_request, 30) }}</td>
                             <td>
-                                <a href="{{ route('admin.product.edit', $product->id) }}" class="btn" title="Düzenle">
+                                <a href="{{ route('admin.reservation.edit', $reservation->id) }}" class="btn" title="Düzenle">
                                     <i class="fas fa-edit"></i>
                                 </a> |
-                                <form action="{{ route('admin.product.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('admin.reservation.destroy', $reservation->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn" onclick="return confirm('Ürünü silmek istediğinizden emin misiniz?')" title="Sil">
+                                    <button type="submit" class="btn" onclick="return confirm('Bu rezervasyonu silmek istediğinizden emin misiniz?')" title="Sil">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
