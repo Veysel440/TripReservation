@@ -17,17 +17,17 @@
                 <a href="{{route('service')}}" class="nav-item nav-link">Servisler</a>
                 <a href="{{route('package')}}" class="nav-item nav-link">Paketler</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sayfalar</a>
                     <div class="dropdown-menu m-0">
                         <a href="{{route('destination')}}" class="dropdown-item">Gidelecek Konum</a>
                         <a href="{{route('booking')}}" class="dropdown-item">Rezervasyon</a>
-                        <a href="{{route('team')}}" class="dropdown-item">Seyahat Rehberleri</a>
+                        <a href="{{route('team.index')}}" class="dropdown-item">Seyahat Rehberleri</a>
                         <a href="{{route('testimonial')}}" class="dropdown-item">Referans</a>
                     </div>
                 </div>
                 <a href="{{route('contact')}}" class="nav-item nav-link">İletişim</a>
             </div>
-            <a href="" class="btn btn-primary rounded-pill py-2 px-4">Register</a>
+            <a href="{{route('admin')}}" class="btn btn-primary rounded-pill py-2 px-4">Giriş Yap</a>
         </div>
     </nav>
 

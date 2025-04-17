@@ -4,5 +4,5 @@
 
 @section('content')
    @include('sections.about')
-    @include('sections.team')
+   @include('sections.team')
 @endsection
